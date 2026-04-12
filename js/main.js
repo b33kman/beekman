@@ -1,3 +1,10 @@
+// Page load fade-in (deferred so it doesn't block FCP)
+requestAnimationFrame(() => {
+  document.body.style.opacity = '0';
+  document.body.style.transition = 'opacity 0.5s ease';
+  requestAnimationFrame(() => { document.body.style.opacity = '1'; });
+});
+
 // Scroll-triggered fade-in
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
