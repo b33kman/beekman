@@ -47,44 +47,8 @@
   }
   </script>
 
-  <!-- Critical CSS — ensures content paints before Tailwind CDN JS executes -->
-  <style>
-    body { margin: 0; font-family: 'DM Sans', system-ui, sans-serif; color: #4b5563; background: #fff; -webkit-font-smoothing: antialiased; }
-    .bg-purple-darkest { background-color: #2E1537; }
-    .text-white { color: #fff; }
-    .text-gray-300 { color: #d1d5db; }
-    .text-olive { color: #7C8433; }
-    .text-blue-light { color: #B4DCF3; }
-    nav { position: fixed; top: 0; width: 100%; z-index: 50; background: rgba(46,21,55,.95); }
-    main { display: block; }
-    img { max-width: 100%; height: auto; }
-    .max-w-6xl { max-width: 72rem; margin-left: auto; margin-right: auto; }
-    section { padding-left: 1rem; padding-right: 1rem; }
-  </style>
-
-  <!-- Tailwind CSS CDN -->
-  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            olive: { DEFAULT: '#7C8433', dark: '#6A7129', light: '#939B4A' },
-            'purple-darkest': '#2E1537',
-            'blue-light': '#B4DCF3',
-            'blue-lighter': '#E3F1FB',
-            'purple-dark': '#3A244C',
-            'purple-medium': '#5A3876',
-          },
-          fontFamily: {
-            display: ['Outfit', 'system-ui', 'sans-serif'],
-            body: ['DM Sans', 'system-ui', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
+  <!-- Tailwind CSS (pre-compiled, no JS dependency) -->
+  <link rel="stylesheet" href="css/tailwind-output.css">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
