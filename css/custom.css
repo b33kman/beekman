@@ -1,0 +1,235 @@
+/* ============================================
+   BEEKMAN PORTFOLIO — Redesigned with UX Focus
+   ============================================ */
+
+/* ---- Base ---- */
+html {
+  scroll-padding-top: 72px;
+}
+
+body {
+  opacity: 0;
+  animation: pageLoad 0.5s ease forwards;
+}
+
+@keyframes pageLoad {
+  to { opacity: 1; }
+}
+
+/* ---- Subtle noise overlay ---- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ---- Selection ---- */
+::selection {
+  background: #7C8433;
+  color: white;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #c4c4c4; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #7C8433; }
+
+/* ---- Nav ---- */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #7C8433;
+  border-radius: 1px;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+  left: 0;
+}
+
+.nav-link.active {
+  color: white;
+}
+
+/* ---- Hero staggered reveal ---- */
+.hero-animate {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: heroReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-animate:nth-child(1) { animation-delay: 0.05s; }
+.hero-animate:nth-child(2) { animation-delay: 0.15s; }
+.hero-animate:nth-child(3) { animation-delay: 0.25s; }
+.hero-animate:nth-child(4) { animation-delay: 0.35s; }
+
+@keyframes heroReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Scroll-triggered fade-in ---- */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-up:nth-child(2) { transition-delay: 0.06s; }
+.fade-in-up:nth-child(3) { transition-delay: 0.12s; }
+.fade-in-up:nth-child(4) { transition-delay: 0.18s; }
+.fade-in-up:nth-child(5) { transition-delay: 0.24s; }
+.fade-in-up:nth-child(6) { transition-delay: 0.30s; }
+
+/* ---- Project card ---- */
+.project-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0,0,0,0.08);
+}
+
+/* ---- Project image showcase: overlapping layout ---- */
+.project-images {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-images > div {
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: flex-start;
+}
+
+.project-images .img-primary {
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .img-primary {
+  transform: scale(1.015);
+}
+
+.project-images .img-secondary {
+  position: absolute;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.project-card:hover .img-secondary {
+  transform: translate(4px, -4px) scale(1.02);
+}
+
+/* Secondary image positioning — bottom-right by default */
+.img-secondary.pos-br {
+  bottom: 8px;
+  right: 8px;
+  width: 48%;
+}
+
+/* Secondary image positioning — iPhone frame bottom-right */
+.img-secondary.pos-iphone {
+  bottom: 6px;
+  right: 10px;
+  width: 25%;
+}
+
+/* ---- iPhone Frame ---- */
+.iphone-frame {
+  position: relative;
+  background: linear-gradient(145deg, #1a1a1a, #000);
+  border-radius: 16px;
+  padding: 3px;
+  box-shadow:
+    0 0 0 0.5px rgba(255,255,255,0.1),
+    0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.iphone-frame img {
+  border-radius: 13px;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.iphone-frame::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22%;
+  height: 4px;
+  background: #000;
+  border-radius: 4px;
+  z-index: 10;
+}
+
+/* ---- Coming Soon shimmer border ---- */
+.coming-soon-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.coming-soon-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(90, 56, 118, 0.2), rgba(124, 132, 51, 0.15), rgba(90, 56, 118, 0.2));
+  background-size: 200% 200%;
+  animation: borderShimmer 6s ease-in-out infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+@keyframes borderShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+
+/* ---- Responsive project image adjustments ---- */
+@media (max-width: 639px) {
+  .img-secondary.pos-br {
+    width: 44%;
+    bottom: 6px;
+    right: 6px;
+  }
+  .img-secondary.pos-iphone {
+    width: 26%;
+    bottom: -10px;
+    right: 8px;
+  }
+}
