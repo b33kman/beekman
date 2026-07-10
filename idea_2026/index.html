@@ -62,8 +62,14 @@
   .nav-scroll::-webkit-scrollbar { display: none; }
 
   /* Hover states (converted from design-file style-hover attributes) */
-  .bk-lift { transition: transform .3s var(--ease-out-expo), box-shadow .3s ease; }
+  .bk-lift { position: relative; transition: transform .3s var(--ease-out-expo), box-shadow .3s ease; }
   .bk-lift:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
+
+  /* Whole-card click target: the visible "Visit" anchor stretches to cover
+     its card, so the entire box is one native link (middle/right-click,
+     keyboard all preserved). Card containers set position:relative. */
+  .bk-stretch::before { content: ""; position: absolute; inset: 0; z-index: 1; }
+  .bk-stretch:focus-visible::before { outline: 2px solid var(--olive); outline-offset: -3px; border-radius: 12px; }
   .bk-material { transition: border-color .3s ease; }
   .bk-material:hover { border-color: var(--olive); }
   .bk-copy-btn { transition: background .3s ease; }
@@ -122,13 +128,13 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-bottom:26px;">
 
         <div class="bk-lift" style="background:var(--olive-wash);border:1px solid var(--olive);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-lg" src="assets/logos/microsoft-copilot.svg" alt="Microsoft Copilot logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Microsoft Copilot</h3></div><a href="https://copilot.microsoft.com" target="_blank" rel="noopener" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-lg" src="assets/logos/microsoft-copilot.svg" alt="Microsoft Copilot logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Microsoft Copilot</h3></div><a href="https://copilot.microsoft.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
           <p style="font-size:13.5px;line-height:1.5;color:var(--fg-body);margin:7px 0 8px;">AI inside Word, Outlook, and Excel. If your organization runs Microsoft 365, start here.</p>
           <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);word-break:break-all;">copilot.microsoft.com</div>
         </div>
 
         <div class="bk-lift" style="background:var(--olive-wash);border:1px solid var(--olive);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-lg" src="assets/logos/google-gemini.svg" alt="Google Gemini logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Google Workspace + Gemini</h3></div><a href="https://workspace.google.com" target="_blank" rel="noopener" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-lg" src="assets/logos/google-gemini.svg" alt="Google Gemini logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Google Workspace + Gemini</h3></div><a href="https://workspace.google.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
           <p style="font-size:13.5px;line-height:1.5;color:var(--fg-body);margin:7px 0 8px;">AI inside Gmail, Docs, and Sheets. If your organization runs Google, start here.</p>
           <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);word-break:break-all;">workspace.google.com</div>
         </div>
@@ -140,25 +146,25 @@
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
           <div style="display:flex;align-items:center;gap:12px;min-width:0;"><img class="bk-logo bk-logo-md" src="assets/logos/openai.svg" alt="OpenAI logo"><div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">ChatGPT <span style="font-weight:400;font-size:12px;color:var(--fg-subtle);">· OpenAI</span></h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">chatgpt.com</div></div></div>
-          <a href="https://chatgpt.com" target="_blank" rel="noopener" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
+          <a href="https://chatgpt.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
         </div>
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
           <div style="display:flex;align-items:center;gap:12px;min-width:0;"><img class="bk-logo bk-logo-md" src="assets/logos/claude-ai.svg" alt="Claude logo"><div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">Claude <span style="font-weight:400;font-size:12px;color:var(--fg-subtle);">· Anthropic</span></h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">claude.ai</div></div></div>
-          <a href="https://claude.ai" target="_blank" rel="noopener" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
+          <a href="https://claude.ai" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
         </div>
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
           <div style="display:flex;align-items:center;gap:12px;min-width:0;"><img class="bk-logo bk-logo-md" src="assets/logos/google-gemini.svg" alt="Google Gemini logo"><div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">Gemini <span style="font-weight:400;font-size:12px;color:var(--fg-subtle);">· Google</span></h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">gemini.google.com</div></div></div>
-          <a href="https://gemini.google.com" target="_blank" rel="noopener" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
+          <a href="https://gemini.google.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
         </div>
 
       </div>
 
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;align-items:stretch;">
-        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;">
+        <div class="bk-lift" style="position:relative;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;">
           <div style="font-family:var(--font-display);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--gray-700);margin-bottom:9px;display:flex;align-items:center;gap:10px;"><span style="width:22px;height:2px;background:var(--olive);"></span>Source-grounded research</div>
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-lg" src="assets/logos/notebook-lm.svg" alt="NotebookLM logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">NotebookLM <span style="font-weight:400;font-size:12px;color:var(--fg-subtle);">· Google</span></h3></div><a href="https://notebooklm.google.com" target="_blank" rel="noopener" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-lg" src="assets/logos/notebook-lm.svg" alt="NotebookLM logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">NotebookLM <span style="font-weight:400;font-size:12px;color:var(--fg-subtle);">· Google</span></h3></div><a href="https://notebooklm.google.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
           <p style="font-size:13.5px;line-height:1.5;color:var(--fg-body);margin:7px 0 8px;">Works only from the documents you give it, which sharply reduces hallucinations.</p>
           <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);word-break:break-all;">notebooklm.google.com</div>
         </div>
@@ -179,25 +185,25 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;display:flex;flex-direction:column;">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-sm" src="assets/logos/openai.svg" alt="OpenAI logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">OpenAI Academy</h3></div><a href="https://academy.openai.com" target="_blank" rel="noopener" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-sm" src="assets/logos/openai.svg" alt="OpenAI logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">OpenAI Academy</h3></div><a href="https://academy.openai.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
           <p style="font-size:13px;line-height:1.5;color:var(--fg-body);margin:7px 0 8px;">Free courses on using ChatGPT effectively, from beginner up.</p>
           <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);margin-top:auto;word-break:break-all;">academy.openai.com</div>
         </div>
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;display:flex;flex-direction:column;">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-sm" src="assets/logos/microsoft-copilot.svg" alt="Microsoft Copilot logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Microsoft Learn: Copilot</h3></div><a href="https://learn.microsoft.com" target="_blank" rel="noopener" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-sm" src="assets/logos/microsoft-copilot.svg" alt="Microsoft Copilot logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Microsoft Learn: Copilot</h3></div><a href="https://learn.microsoft.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
           <p style="font-size:13px;line-height:1.5;color:var(--fg-body);margin:7px 0 8px;">Guided training paths for Copilot in Word, Outlook, and Excel.</p>
           <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);margin-top:auto;word-break:break-all;">learn.microsoft.com</div>
         </div>
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;display:flex;flex-direction:column;">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-sm" src="assets/logos/anthropic.svg" alt="Anthropic logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Anthropic Docs &amp; Guides</h3></div><a href="https://anthropic.com/learn" target="_blank" rel="noopener" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-sm" src="assets/logos/anthropic.svg" alt="Anthropic logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Anthropic Docs &amp; Guides</h3></div><a href="https://anthropic.com/learn" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
           <p style="font-size:13px;line-height:1.5;color:var(--fg-body);margin:7px 0 8px;">Prompting guides and Claude fundamentals.</p>
           <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);margin-top:auto;word-break:break-all;">anthropic.com/learn</div>
         </div>
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;display:flex;flex-direction:column;">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-sm" src="assets/logos/google.svg" alt="Google logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Google: AI &amp; Prompting</h3></div><a href="https://grow.google" target="_blank" rel="noopener" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-sm" src="assets/logos/google.svg" alt="Google logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Google: AI &amp; Prompting</h3></div><a href="https://grow.google" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
           <p style="font-size:13px;line-height:1.5;color:var(--fg-body);margin:7px 0 8px;">Short courses on working with Gemini and writing effective prompts.</p>
           <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);margin-top:auto;word-break:break-all;">grow.google</div>
         </div>
@@ -242,22 +248,22 @@
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
           <div style="display:flex;align-items:center;gap:12px;min-width:0;"><img class="bk-logo bk-logo-md" src="assets/logos/openai.svg" alt="OpenAI logo"><div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">OpenAI News</h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">openai.com/news</div></div></div>
-          <a href="https://openai.com/news" target="_blank" rel="noopener" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
+          <a href="https://openai.com/news" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
         </div>
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
           <div style="display:flex;align-items:center;gap:12px;min-width:0;"><img class="bk-logo bk-logo-md" src="assets/logos/anthropic.svg" alt="Anthropic logo"><div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">Anthropic News</h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">anthropic.com/news</div></div></div>
-          <a href="https://anthropic.com/news" target="_blank" rel="noopener" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
+          <a href="https://anthropic.com/news" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
         </div>
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
           <div style="display:flex;align-items:center;gap:12px;min-width:0;"><img class="bk-logo bk-logo-md" src="assets/logos/google.svg" alt="Google logo"><div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">Google AI Updates</h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">blog.google</div></div></div>
-          <a href="https://blog.google" target="_blank" rel="noopener" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
+          <a href="https://blog.google" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
         </div>
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
           <div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">The Rundown AI</h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">therundown.ai</div></div>
-          <a href="https://therundown.ai" target="_blank" rel="noopener" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
+          <a href="https://therundown.ai" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
         </div>
 
       </div>
