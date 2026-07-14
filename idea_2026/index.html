@@ -73,16 +73,19 @@
   .bk-material { transition: border-color .3s ease; }
   .bk-material:hover { border-color: var(--olive); }
 
-  /* Per-format download links (cards offering more than one file format) */
-  .bk-dl { font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--olive); text-decoration: none; white-space: nowrap; transition: color .3s ease; }
-  .bk-dl:hover { color: var(--olive-dark); text-decoration: underline; }
-  .bk-copy-btn { transition: background .3s ease; }
-  .bk-copy-btn:hover { background: var(--olive-dark) !important; }
+  /* Per-format download links (cards offering more than one file format).
+     Padding enlarges the tap target; the negative margin keeps layout unchanged. */
+  .bk-dl { font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--olive-dark); text-decoration: none; white-space: nowrap; transition: color .3s ease; padding: 9px 3px; margin: -9px -3px; }
+  .bk-dl:hover { color: var(--olive); text-decoration: underline; }
+  .bk-copy-btn { transition: filter .3s ease; }
+  .bk-copy-btn:hover { filter: brightness(0.9); }
   .bk-totop { transition: color .3s ease; }
   .bk-totop:hover { color: #fff !important; }
   a[data-nav] { transition: color .3s ease; }
 
-  /* Case Brain card thumbnails — pinned to the card bottom so all three align */
+  /* Card thumbnails — margin-top:auto pins them to the card bottom so they align
+     across a row. The element above each thumb carries margin-bottom:16px, which
+     guarantees that minimum gap even when a card has no slack to distribute. */
   .bk-thumb { margin-top: auto; border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; background: var(--gray-50); }
   .bk-thumb img { display: block; width: 100%; height: 132px; object-fit: cover; object-position: top left; }
 
@@ -136,13 +139,13 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-bottom:26px;">
 
         <div class="bk-lift" style="background:var(--olive-wash);border:1px solid var(--olive);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-lg" src="assets/logos/microsoft-copilot.svg" alt="Microsoft Copilot logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Microsoft Copilot</h3></div><a href="https://copilot.microsoft.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-lg" src="assets/logos/microsoft-copilot.svg" alt="Microsoft Copilot logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Microsoft Copilot</h3></div><a href="https://copilot.microsoft.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive-dark);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
           <p style="font-size:13.5px;line-height:1.5;color:var(--fg-body);margin:7px 0 8px;">AI inside Word, Outlook, and Excel. If your organization runs Microsoft 365, start here.</p>
           <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);word-break:break-all;">copilot.microsoft.com</div>
         </div>
 
         <div class="bk-lift" style="background:var(--olive-wash);border:1px solid var(--olive);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-lg" src="assets/logos/google-gemini.svg" alt="Google Gemini logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Google Workspace + Gemini</h3></div><a href="https://workspace.google.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-lg" src="assets/logos/google-gemini.svg" alt="Google Gemini logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Google Workspace + Gemini</h3></div><a href="https://workspace.google.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive-dark);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
           <p style="font-size:13.5px;line-height:1.5;color:var(--fg-body);margin:7px 0 8px;">AI inside Gmail, Docs, and Sheets. If your organization runs Google, start here.</p>
           <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);word-break:break-all;">workspace.google.com</div>
         </div>
@@ -153,18 +156,18 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-bottom:26px;">
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
-          <div style="display:flex;align-items:center;gap:12px;min-width:0;"><img class="bk-logo bk-logo-md" src="assets/logos/openai.svg" alt="OpenAI logo"><div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">ChatGPT <span style="font-weight:400;font-size:12px;color:var(--fg-subtle);">· OpenAI</span></h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">chatgpt.com</div></div></div>
-          <a href="https://chatgpt.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
+          <div style="display:flex;align-items:center;gap:12px;min-width:0;"><img class="bk-logo bk-logo-md" src="assets/logos/openai.svg" alt="OpenAI logo"><div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">ChatGPT <span style="font-weight:400;font-size:12px;color:var(--fg-muted);">· OpenAI</span></h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">chatgpt.com</div></div></div>
+          <a href="https://chatgpt.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive-dark);text-decoration:none;white-space:nowrap;">Visit ↗</a>
         </div>
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
-          <div style="display:flex;align-items:center;gap:12px;min-width:0;"><img class="bk-logo bk-logo-md" src="assets/logos/claude-ai.svg" alt="Claude logo"><div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">Claude <span style="font-weight:400;font-size:12px;color:var(--fg-subtle);">· Anthropic</span></h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">claude.ai</div></div></div>
-          <a href="https://claude.ai" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
+          <div style="display:flex;align-items:center;gap:12px;min-width:0;"><img class="bk-logo bk-logo-md" src="assets/logos/claude-ai.svg" alt="Claude logo"><div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">Claude <span style="font-weight:400;font-size:12px;color:var(--fg-muted);">· Anthropic</span></h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">claude.ai</div></div></div>
+          <a href="https://claude.ai" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive-dark);text-decoration:none;white-space:nowrap;">Visit ↗</a>
         </div>
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
-          <div style="display:flex;align-items:center;gap:12px;min-width:0;"><img class="bk-logo bk-logo-md" src="assets/logos/google-gemini.svg" alt="Google Gemini logo"><div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">Gemini <span style="font-weight:400;font-size:12px;color:var(--fg-subtle);">· Google</span></h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">gemini.google.com</div></div></div>
-          <a href="https://gemini.google.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
+          <div style="display:flex;align-items:center;gap:12px;min-width:0;"><img class="bk-logo bk-logo-md" src="assets/logos/google-gemini.svg" alt="Google Gemini logo"><div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">Gemini <span style="font-weight:400;font-size:12px;color:var(--fg-muted);">· Google</span></h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">gemini.google.com</div></div></div>
+          <a href="https://gemini.google.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive-dark);text-decoration:none;white-space:nowrap;">Visit ↗</a>
         </div>
 
       </div>
@@ -172,7 +175,7 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;align-items:stretch;">
         <div class="bk-lift" style="position:relative;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;">
           <div style="font-family:var(--font-display);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--gray-700);margin-bottom:9px;display:flex;align-items:center;gap:10px;"><span style="width:22px;height:2px;background:var(--olive);"></span>Source-grounded research</div>
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-lg" src="assets/logos/notebook-lm.svg" alt="NotebookLM logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">NotebookLM <span style="font-weight:400;font-size:12px;color:var(--fg-subtle);">· Google</span></h3></div><a href="https://notebooklm.google.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-lg" src="assets/logos/notebook-lm.svg" alt="NotebookLM logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">NotebookLM <span style="font-weight:400;font-size:12px;color:var(--fg-muted);">· Google</span></h3></div><a href="https://notebooklm.google.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive-dark);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
           <p style="font-size:13.5px;line-height:1.5;color:var(--fg-body);margin:7px 0 8px;">Works only from the documents you give it, which sharply reduces hallucinations.</p>
           <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);word-break:break-all;">notebooklm.google.com</div>
         </div>
@@ -193,25 +196,25 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;display:flex;flex-direction:column;">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-sm" src="assets/logos/openai.svg" alt="OpenAI logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">OpenAI Academy</h3></div><a href="https://academy.openai.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-sm" src="assets/logos/openai.svg" alt="OpenAI logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">OpenAI Academy</h3></div><a href="https://academy.openai.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive-dark);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
           <p style="font-size:13px;line-height:1.5;color:var(--fg-body);margin:7px 0 8px;">Free courses on using ChatGPT effectively, from beginner up.</p>
           <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);margin-top:auto;word-break:break-all;">academy.openai.com</div>
         </div>
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;display:flex;flex-direction:column;">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-sm" src="assets/logos/microsoft-copilot.svg" alt="Microsoft Copilot logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Microsoft Learn: Copilot</h3></div><a href="https://learn.microsoft.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-sm" src="assets/logos/microsoft-copilot.svg" alt="Microsoft Copilot logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Microsoft Learn: Copilot</h3></div><a href="https://learn.microsoft.com" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive-dark);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
           <p style="font-size:13px;line-height:1.5;color:var(--fg-body);margin:7px 0 8px;">Guided training paths for Copilot in Word, Outlook, and Excel.</p>
           <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);margin-top:auto;word-break:break-all;">learn.microsoft.com</div>
         </div>
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;display:flex;flex-direction:column;">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-sm" src="assets/logos/anthropic.svg" alt="Anthropic logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Anthropic Docs &amp; Guides</h3></div><a href="https://anthropic.com/learn" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-sm" src="assets/logos/anthropic.svg" alt="Anthropic logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Anthropic Docs &amp; Guides</h3></div><a href="https://anthropic.com/learn" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive-dark);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
           <p style="font-size:13px;line-height:1.5;color:var(--fg-body);margin:7px 0 8px;">Prompting guides and Claude fundamentals.</p>
           <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);margin-top:auto;word-break:break-all;">anthropic.com/learn</div>
         </div>
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;display:flex;flex-direction:column;">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-sm" src="assets/logos/google.svg" alt="Google logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Google: AI &amp; Prompting</h3></div><a href="https://grow.google" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;"><div style="display:flex;align-items:center;gap:10px;min-width:0;"><img class="bk-logo bk-logo-sm" src="assets/logos/google.svg" alt="Google logo"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin:0;">Google: AI &amp; Prompting</h3></div><a href="https://grow.google" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive-dark);text-decoration:none;white-space:nowrap;">Visit ↗</a></div>
           <p style="font-size:13px;line-height:1.5;color:var(--fg-body);margin:7px 0 8px;">Short courses on working with Gemini and writing effective prompts.</p>
           <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);margin-top:auto;word-break:break-all;">grow.google</div>
         </div>
@@ -239,7 +242,7 @@
       <div style="background:var(--olive-wash);border:1px solid var(--olive);border-radius:16px;padding:20px;max-width:900px;">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;">
           <span style="font-family:var(--font-display);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--olive-dark);">Copy &amp; run on one de-identified document</span>
-          <button data-copy="prompt" data-label="Copy" class="bk-copy-btn" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:#fff;background:var(--olive);border:none;border-radius:10px;padding:9px 16px;cursor:pointer;min-height:40px;">Copy</button>
+          <button data-copy="prompt" data-label="Copy" class="bk-copy-btn" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:#fff;background:var(--olive-dark);border:none;border-radius:10px;padding:9px 16px;cursor:pointer;min-height:40px;">Copy</button>
         </div>
         <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;line-height:1.6;color:var(--gray-900);">"You are an experienced legal assistant supporting a special education hearing officer. I will paste one de-identified document from a due process matter. Summarize the document, identify the issues it presents, and list every date or deadline it references. Format your answer with bold headings: Summary, Issues Presented, Dates &amp; Deadlines, Open Questions. Use only the document provided; do not cite case law or outside sources; do not include PII, replace with generic terms. If something is not stated in the document, write 'not stated.' Keep it under 750 words."</div>
       </div>
@@ -258,21 +261,21 @@
         <div style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;display:flex;flex-direction:column;">
           <div style="font-family:var(--font-display);font-weight:800;font-size:30px;line-height:1;color:var(--olive);letter-spacing:-0.02em;margin-bottom:8px;">1</div>
           <div style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin-bottom:4px;">One Project (or Folder)</div>
-          <div style="font-size:13px;line-height:1.5;color:var(--fg-body);margin-bottom:14px;">A single Project (or folder) per matter, structured by document type — correspondence, filings, records, evaluations, research. Load it with every source document so answers stay grounded in your own files.</div>
+          <div style="font-size:13px;line-height:1.5;color:var(--fg-body);margin-bottom:16px;">A single Project (or folder) per matter, structured by document type — correspondence, filings, records, evaluations, research. Load it with every source document so answers stay grounded in your own files.</div>
           <div class="bk-thumb"><img src="assets/casebrain/project-folder.webp" alt="A case Project in OneDrive with folders for correspondence, court filings, evaluations, records, and research" loading="lazy" width="640" height="535"></div>
         </div>
 
         <div style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;display:flex;flex-direction:column;">
           <div style="font-family:var(--font-display);font-weight:800;font-size:30px;line-height:1;color:var(--olive);letter-spacing:-0.02em;margin-bottom:8px;">2</div>
           <div style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin-bottom:4px;">One operating guide</div>
-          <div style="font-size:13px;line-height:1.5;color:var(--fg-body);margin-bottom:14px;">A document that controls the AI's output — the tone, structure, and the safety and accuracy rules it must follow. Write it once; it governs every session.</div>
+          <div style="font-size:13px;line-height:1.5;color:var(--fg-body);margin-bottom:16px;">A document that controls the AI's output — the tone, structure, and the safety and accuracy rules it must follow. Write it once; it governs every session.</div>
           <div class="bk-thumb"><img src="assets/casebrain/operating-guide.webp" alt="A Copilot Operating Guide document open in Word, setting standards for AI use in legal work" loading="lazy" width="640" height="638"></div>
         </div>
 
         <div style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;display:flex;flex-direction:column;">
           <div style="font-family:var(--font-display);font-weight:800;font-size:30px;line-height:1;color:var(--olive);letter-spacing:-0.02em;margin-bottom:8px;">3</div>
           <div style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin-bottom:4px;">One living master case summary</div>
-          <div style="font-size:13px;line-height:1.5;color:var(--fg-body);margin-bottom:14px;">A single document that summarizes the case — overview, parties, procedural history, issues — and stays current as the matter moves. The AI reads it for instant context.</div>
+          <div style="font-size:13px;line-height:1.5;color:var(--fg-body);margin-bottom:16px;">A single document that summarizes the case — overview, parties, procedural history, issues — and stays current as the matter moves. The AI reads it for instant context.</div>
           <div class="bk-thumb"><img src="assets/casebrain/case-summary.webp" alt="A master case summary document open in Word, showing case overview, parties, and procedural history" loading="lazy" width="640" height="638"></div>
         </div>
 
@@ -283,7 +286,7 @@
       <div style="font-family:var(--font-display);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--gray-700);margin:0 0 12px;display:flex;align-items:center;gap:10px;"><span style="width:22px;height:2px;background:var(--olive);"></span>Example documents — copy the structure</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;max-width:900px;">
 
-        <div class="bk-material" style="background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-sm);padding:15px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
+        <div class="bk-material" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:15px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
           <div style="min-width:0;"><div style="font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--gray-900);">Operating Guide</div><div style="font-size:12.5px;color:var(--fg-muted);">Example — standards for AI use</div></div>
           <div style="flex:none;display:flex;align-items:center;gap:14px;">
             <a href="files/Copilot_Operating_Guide.docx" download class="bk-dl">DOCX ↓</a>
@@ -291,7 +294,7 @@
           </div>
         </div>
 
-        <div class="bk-material" style="background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-sm);padding:15px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
+        <div class="bk-material" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:15px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
           <div style="min-width:0;"><div style="font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--gray-900);">Master Case Summary</div><div style="font-size:12.5px;color:var(--fg-muted);">Example — fictional matter, illustrative only</div></div>
           <div style="flex:none;display:flex;align-items:center;gap:14px;">
             <a href="files/Master_Case_Summary_Example.docx" download class="bk-dl">DOCX ↓</a>
@@ -313,32 +316,32 @@
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
           <div style="display:flex;align-items:center;gap:12px;min-width:0;"><img class="bk-logo bk-logo-md" src="assets/logos/openai.svg" alt="OpenAI logo"><div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">OpenAI News</h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">openai.com/news</div></div></div>
-          <a href="https://openai.com/news" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
+          <a href="https://openai.com/news" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive-dark);text-decoration:none;white-space:nowrap;">Visit ↗</a>
         </div>
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
           <div style="display:flex;align-items:center;gap:12px;min-width:0;"><img class="bk-logo bk-logo-md" src="assets/logos/anthropic.svg" alt="Anthropic logo"><div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">Anthropic News</h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">anthropic.com/news</div></div></div>
-          <a href="https://anthropic.com/news" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
+          <a href="https://anthropic.com/news" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive-dark);text-decoration:none;white-space:nowrap;">Visit ↗</a>
         </div>
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
           <div style="display:flex;align-items:center;gap:12px;min-width:0;"><img class="bk-logo bk-logo-md" src="assets/logos/google.svg" alt="Google logo"><div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">Google AI Updates</h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">blog.google</div></div></div>
-          <a href="https://blog.google" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
+          <a href="https://blog.google" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive-dark);text-decoration:none;white-space:nowrap;">Visit ↗</a>
         </div>
 
         <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
           <div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">The Rundown AI</h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">therundown.ai</div></div>
-          <a href="https://therundown.ai" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive);text-decoration:none;white-space:nowrap;">Visit ↗</a>
+          <a href="https://therundown.ai" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive-dark);text-decoration:none;white-space:nowrap;">Visit ↗</a>
         </div>
 
       </div>
 
       <div style="font-family:var(--font-display);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--gray-700);margin:0 0 12px;display:flex;align-items:center;gap:10px;"><span style="width:22px;height:2px;background:var(--olive);"></span>Advanced — automate it with a routine</div>
       <div style="background:var(--olive-wash);border:1px solid var(--olive);border-radius:16px;padding:20px;max-width:900px;">
-        <p style="font-family:var(--font-display);font-size:13px;font-weight:500;color:var(--gray-700);margin:0 0 12px;line-height:1.5;">Don't chase the news — have it delivered. Paste this into ChatGPT, Claude, or Copilot as a scheduled task <span style="color:var(--fg-muted);">(a Session 2 lesson in practice).</span></p>
+        <p style="font-family:var(--font-display);font-size:13px;font-weight:500;color:var(--gray-700);margin:0 0 12px;line-height:1.5;">Don't chase the news — have it delivered. Paste this into ChatGPT, Claude, or Copilot as a scheduled task <span style="color:var(--gray-600);">(a Session 2 lesson in practice).</span></p>
         <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;">
           <span style="font-family:var(--font-display);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--olive-dark);">The Weekly Routine</span>
-          <button data-copy="routine" data-label="Copy" class="bk-copy-btn" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:#fff;background:var(--olive);border:none;border-radius:10px;padding:9px 16px;cursor:pointer;min-height:40px;">Copy</button>
+          <button data-copy="routine" data-label="Copy" class="bk-copy-btn" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:#fff;background:var(--olive-dark);border:none;border-radius:10px;padding:9px 16px;cursor:pointer;min-height:40px;">Copy</button>
         </div>
         <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;line-height:1.6;color:var(--gray-900);">"Every Monday at 8:00 a.m., search for major AI product and model updates from OpenAI, Anthropic, Google, and Microsoft over the past week, plus any significant news about AI use in the legal profession. Summarize in five bullets or fewer, in plain language, with a link for each item. Skip rumors and speculation; include only announced products and published reports."</div>
       </div>
@@ -352,26 +355,26 @@
       <p style="font-size:14.5px;line-height:1.6;color:var(--fg-muted);font-style:italic;margin:0 0 22px;max-width:720px;">Download the session documents.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;">
 
-        <a href="files/Quick_Reference_Demystifying_AI_v2.pdf" target="_blank" rel="noopener" class="bk-material" style="text-decoration:none;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-sm);padding:15px 18px;display:flex;flex-direction:column;">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+        <a href="files/Quick_Reference_Demystifying_AI_v2.pdf" target="_blank" rel="noopener" class="bk-material" style="text-decoration:none;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:15px 18px;display:flex;flex-direction:column;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;">
             <div style="min-width:0;"><div style="font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--gray-900);">Quick reference guide</div><div style="font-size:12.5px;color:var(--fg-muted);">Print-ready handout PDF</div></div>
-            <span style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:var(--olive);white-space:nowrap;">PDF ↓</span>
+            <span style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:var(--olive-dark);white-space:nowrap;">PDF ↓</span>
           </div>
           <div class="bk-thumb"><img src="assets/materials/quick-reference.webp" alt="First page of the two-sided quick reference guide" loading="lazy" width="640" height="828"></div>
         </a>
 
-        <a href="files/Session_Doc_Demystifying_AI_v10_3.pdf" target="_blank" rel="noopener" class="bk-material" style="text-decoration:none;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-sm);padding:15px 18px;display:flex;flex-direction:column;">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+        <a href="files/Session_Doc_Demystifying_AI_v10_3.pdf" target="_blank" rel="noopener" class="bk-material" style="text-decoration:none;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:15px 18px;display:flex;flex-direction:column;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;">
             <div style="min-width:0;"><div style="font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--gray-900);">Session document</div><div style="font-size:12.5px;color:var(--fg-muted);">Full written content (long form)</div></div>
-            <span style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:var(--olive);white-space:nowrap;">PDF ↓</span>
+            <span style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:var(--olive-dark);white-space:nowrap;">PDF ↓</span>
           </div>
           <div class="bk-thumb"><img src="assets/materials/session-document.webp" alt="First page of the full session write-up document" loading="lazy" width="640" height="828"></div>
         </a>
 
-        <a href="files/Slide_Deck_Demystifying_AI_10.3.pdf" target="_blank" rel="noopener" class="bk-material" style="text-decoration:none;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-sm);padding:15px 18px;display:flex;flex-direction:column;">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+        <a href="files/Slide_Deck_Demystifying_AI_10.3.pdf" target="_blank" rel="noopener" class="bk-material" style="text-decoration:none;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:15px 18px;display:flex;flex-direction:column;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;">
             <div style="min-width:0;"><div style="font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--gray-900);">Slide deck</div><div style="font-size:12.5px;color:var(--fg-muted);">The presentation slides</div></div>
-            <span style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:var(--olive);white-space:nowrap;">PDF ↓</span>
+            <span style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:var(--olive-dark);white-space:nowrap;">PDF ↓</span>
           </div>
           <div class="bk-thumb"><img src="assets/materials/slide-deck.webp" alt="Title slide of the Demystifying AI presentation deck" loading="lazy" width="640" height="360"></div>
         </a>
@@ -381,10 +384,10 @@
   </section>
 
   <!-- CLOSING BAND (One Rule) -->
-  <section style="background:var(--olive);padding:44px 0;">
+  <section style="background:var(--olive-dark);padding:44px 0;">
     <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,32px);">
-      <p style="font-family:var(--font-display);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:rgba(255,255,255,0.75);margin:0 0 12px;">The One Rule</p>
-      <p style="font-size:15px;line-height:1.55;color:rgba(255,255,255,0.95);margin:0 0 12px;max-width:640px;">You are responsible for everything you review, create, and submit. AI assists you; you are ultimately accountable.</p>
+      <p style="font-family:var(--font-display);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:#fff;margin:0 0 12px;">The One Rule</p>
+      <p style="font-size:15px;line-height:1.55;color:#fff;margin:0 0 12px;max-width:640px;">You are responsible for everything you review, create, and submit. AI assists you; you are ultimately accountable.</p>
       <p style="font-family:var(--font-display);font-weight:800;font-size:clamp(24px,3.5vw,30px);letter-spacing:-0.02em;color:#fff;margin:0;">You review. You decide. You sign.</p>
     </div>
   </section>
@@ -392,11 +395,11 @@
   <!-- FOOTER -->
   <footer style="background:var(--purple-darkest);padding:34px 0;">
     <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,32px);">
-      <div style="display:flex;justify-content:center;margin-bottom:22px;"><a href="#top" data-nav="top" class="bk-totop" style="font-family:var(--font-display);text-transform:uppercase;letter-spacing:0.1em;font-size:12px;color:var(--gray-500);text-decoration:none;display:inline-flex;align-items:center;gap:8px;">↑ Back to top</a></div>
+      <div style="display:flex;justify-content:center;margin-bottom:22px;"><a href="#top" data-nav="top" class="bk-totop" style="font-family:var(--font-display);text-transform:uppercase;letter-spacing:0.1em;font-size:12px;color:var(--gray-400);text-decoration:none;display:inline-flex;align-items:center;gap:8px;">↑ Back to top</a></div>
       <div style="display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center;">
         <img src="/images/beekman_logo_white.webp" alt="Beekman" style="height:20px;opacity:0.5;">
         <p style="font-family:var(--font-display);font-size:13px;color:var(--gray-400);margin:0;">Mark Beekman · <a href="https://beekman.com" target="_blank" rel="noopener" style="color:var(--olive-light);text-decoration:none;">beekman.com</a> · <a href="mailto:hello@beekman.com" style="color:var(--olive-light);text-decoration:none;">hello@beekman.com</a></p>
-        <p style="font-size:12px;line-height:1.55;color:var(--gray-500);margin:0;max-width:560px;">Links and product names current as of July 2026; this field evolves rapidly — check the "last updated" date above.</p>
+        <p style="font-size:12px;line-height:1.55;color:var(--gray-400);margin:0;max-width:560px;">Links and product names current as of July 2026; this field evolves rapidly — check the "last updated" date above.</p>
       </div>
     </div>
   </footer>
