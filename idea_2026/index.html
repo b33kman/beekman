@@ -73,6 +73,19 @@
   .bk-material { transition: border-color .3s ease; }
   .bk-material:hover { border-color: var(--olive); }
 
+  /* Compact reference lists (Stay Current) — hairline-divided rows, whole row is
+     the link. Denser than cards, which suits scanning a reference list. */
+  .bk-reflist { background: #fff; border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow-sm); overflow: hidden; max-width: 900px; }
+  .bk-row { display: flex; align-items: center; gap: 12px; padding: 11px 16px; text-decoration: none; border-top: 1px solid var(--border); transition: background .2s ease; }
+  .bk-row:first-child { border-top: 0; }
+  .bk-row:hover { background: var(--gray-50); }
+  .bk-row:hover .bk-row-go { transform: translate(1px, -1px); }
+  .bk-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 1px 8px; min-width: 0; }
+  .bk-row-name { font-family: var(--font-display); font-weight: 700; font-size: 14.5px; color: var(--gray-900); }
+  .bk-row-url { font-family: ui-monospace,'SF Mono',Menlo,monospace; font-size: 12px; color: var(--olive-dark); word-break: break-all; }
+  .bk-row-desc { font-size: 12.5px; line-height: 1.45; color: var(--fg-muted); margin-top: 3px; }
+  .bk-row-go { flex: none; font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--olive-dark); transition: transform .2s ease; }
+
   /* Per-format download links (cards offering more than one file format).
      Padding enlarges the tap target; the negative margin keeps layout unchanged. */
   .bk-dl { font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--olive-dark); text-decoration: none; white-space: nowrap; transition: color .3s ease; padding: 9px 3px; margin: -9px -3px; }
@@ -312,27 +325,71 @@
       <h2 style="font-family:var(--font-display);font-weight:700;font-size:26px;letter-spacing:-0.02em;color:var(--gray-900);margin:0 0 8px;">Stay Current</h2>
       <p style="font-size:14.5px;line-height:1.6;color:var(--fg-muted);font-style:italic;margin:0 0 24px;max-width:720px;">The models update roughly monthly. Follow the sources directly — or, for a hands-off brief, set up the routine below.</p>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-bottom:28px;">
+      <div style="font-family:var(--font-display);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--gray-700);margin:0 0 12px;display:flex;align-items:center;gap:10px;"><span style="width:22px;height:2px;background:var(--olive);"></span>Straight from the model makers</div>
+      <div class="bk-reflist" style="margin-bottom:26px;">
 
-        <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
-          <div style="display:flex;align-items:center;gap:12px;min-width:0;"><img class="bk-logo bk-logo-md" src="assets/logos/openai.svg" alt="OpenAI logo"><div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">OpenAI News</h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">openai.com/news</div></div></div>
-          <a href="https://openai.com/news" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive-dark);text-decoration:none;white-space:nowrap;">Visit ↗</a>
-        </div>
+        <a href="https://openai.com/news" target="_blank" rel="noopener" class="bk-row">
+          <img class="bk-logo bk-logo-sm" src="assets/logos/openai.svg" alt="">
+          <div class="bk-row-head" style="flex:1;"><span class="bk-row-name">OpenAI News</span><span class="bk-row-url">openai.com/news</span></div>
+          <span class="bk-row-go">↗</span>
+        </a>
 
-        <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
-          <div style="display:flex;align-items:center;gap:12px;min-width:0;"><img class="bk-logo bk-logo-md" src="assets/logos/anthropic.svg" alt="Anthropic logo"><div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">Anthropic News</h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">anthropic.com/news</div></div></div>
-          <a href="https://anthropic.com/news" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive-dark);text-decoration:none;white-space:nowrap;">Visit ↗</a>
-        </div>
+        <a href="https://anthropic.com/news" target="_blank" rel="noopener" class="bk-row">
+          <img class="bk-logo bk-logo-sm" src="assets/logos/anthropic.svg" alt="">
+          <div class="bk-row-head" style="flex:1;"><span class="bk-row-name">Anthropic News</span><span class="bk-row-url">anthropic.com/news</span></div>
+          <span class="bk-row-go">↗</span>
+        </a>
 
-        <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
-          <div style="display:flex;align-items:center;gap:12px;min-width:0;"><img class="bk-logo bk-logo-md" src="assets/logos/google.svg" alt="Google logo"><div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">Google AI Updates</h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">blog.google</div></div></div>
-          <a href="https://blog.google" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive-dark);text-decoration:none;white-space:nowrap;">Visit ↗</a>
-        </div>
+        <a href="https://blog.google" target="_blank" rel="noopener" class="bk-row">
+          <img class="bk-logo bk-logo-sm" src="assets/logos/google.svg" alt="">
+          <div class="bk-row-head" style="flex:1;"><span class="bk-row-name">Google AI Updates</span><span class="bk-row-url">blog.google</span></div>
+          <span class="bk-row-go">↗</span>
+        </a>
 
-        <div class="bk-lift" style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
-          <div style="min-width:0;"><h3 style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--gray-900);margin:0 0 2px;">The Rundown AI</h3><div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:var(--olive-dark);">therundown.ai</div></div>
-          <a href="https://therundown.ai" target="_blank" rel="noopener" class="bk-stretch" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13.5px;color:var(--olive-dark);text-decoration:none;white-space:nowrap;">Visit ↗</a>
-        </div>
+      </div>
+
+      <div style="font-family:var(--font-display);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--gray-700);margin:0 0 12px;display:flex;align-items:center;gap:10px;"><span style="width:22px;height:2px;background:var(--olive);"></span>Newsletters &amp; publications</div>
+      <div class="bk-reflist" style="margin-bottom:28px;">
+
+        <a href="https://www.therundown.ai/" target="_blank" rel="noopener" class="bk-row">
+          <div style="flex:1;min-width:0;">
+            <div class="bk-row-head"><span class="bk-row-name">The Rundown AI</span><span class="bk-row-url">therundown.ai</span></div>
+            <div class="bk-row-desc">Scannable, hyper-current daily tech brief. Best for a pulse on major breakthroughs, new model releases, and trending tools.</div>
+          </div>
+          <span class="bk-row-go">↗</span>
+        </a>
+
+        <a href="https://www.lawnext.com/" target="_blank" rel="noopener" class="bk-row">
+          <div style="flex:1;min-width:0;">
+            <div class="bk-row-head"><span class="bk-row-name">LawSites</span><span class="bk-row-url">lawnext.com</span></div>
+            <div class="bk-row-desc">Authoritative, jargon-free legal tech journalism from veteran reporter Bob Ambrogi. Best for how new AI tools actually apply to legal work, compliance, and evolving court rules.</div>
+          </div>
+          <span class="bk-row-go">↗</span>
+        </a>
+
+        <a href="https://spellbook.com/newsletter" target="_blank" rel="noopener" class="bk-row">
+          <div style="flex:1;min-width:0;">
+            <div class="bk-row-head"><span class="bk-row-name">The Redline</span><span class="bk-row-url">spellbook.com/newsletter</span></div>
+            <div class="bk-row-desc">Practical, lawyer-focused skills and prompt tutorials. Best for learning step by step how to safely prompt AI for document analysis, synthesis, and drafting.</div>
+          </div>
+          <span class="bk-row-go">↗</span>
+        </a>
+
+        <a href="https://natlawreview.com/practice-groups/artificial-intelligence-law-news" target="_blank" rel="noopener" class="bk-row">
+          <div style="flex:1;min-width:0;">
+            <div class="bk-row-head"><span class="bk-row-name">Artificial Intelligence &amp; the Law</span><span class="bk-row-url">natlawreview.com</span></div>
+            <div class="bk-row-desc">High-level regulatory, policy, and risk tracking. Best for ethics, data-confidentiality liabilities, and federal guidance on data use.</div>
+          </div>
+          <span class="bk-row-go">↗</span>
+        </a>
+
+        <a href="https://www.edsurge.com/" target="_blank" rel="noopener" class="bk-row">
+          <div style="flex:1;min-width:0;">
+            <div class="bk-row-head"><span class="bk-row-name">EdSurge</span><span class="bk-row-url">edsurge.com</span></div>
+            <div class="bk-row-desc">Human-centric and policy-conscious, focused on real school implementation. Best for how AI affects student privacy (FERPA), disability accommodations, and special education equity.</div>
+          </div>
+          <span class="bk-row-go">↗</span>
+        </a>
 
       </div>
 
