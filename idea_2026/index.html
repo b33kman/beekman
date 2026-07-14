@@ -400,7 +400,15 @@
           <span style="font-family:var(--font-display);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--olive-dark);">The Weekly Routine</span>
           <button data-copy="routine" data-label="Copy" class="bk-copy-btn" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:#fff;background:var(--olive-dark);border:none;border-radius:10px;padding:9px 16px;cursor:pointer;min-height:40px;">Copy</button>
         </div>
-        <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;line-height:1.6;color:var(--gray-900);">"Every Monday at 8:00 a.m., search for major AI product and model updates from OpenAI, Anthropic, Google, and Microsoft over the past week, plus any significant news about AI use in the legal profession. Summarize in five bullets or fewer, in plain language, with a link for each item. Skip rumors and speculation; include only announced products and published reports."</div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;line-height:1.6;color:var(--gray-900);">You are a research assistant briefing a special education administrative law judge or impartial hearing officer.
+          <br><br>Every Monday at 8:00 a.m., search the past week for AI developments relevant to that role, and cover all five areas:
+          <br><br>1. Models and tools — significant releases or changes from OpenAI, Anthropic, Google, and Microsoft, and what actually changed for an everyday user.
+          <br>2. AI in the courts — new court rules, standing orders, and judicial or bar ethics opinions on AI use; sanctions or discipline involving AI-generated filings or fabricated citations.
+          <br>3. Law and policy — federal and state AI legislation, regulation, and agency guidance, including student data privacy under FERPA and IDEA.
+          <br>4. AI in special education — how districts are using AI in evaluations, IEP development, and assistive technology; any evidence of bias or disparate impact on students with disabilities; and disputes or decisions raising these issues.
+          <br>5. AI and evidence — authenticity, deepfakes, and how tribunals are treating AI-generated or AI-assisted evidence and expert testimony.
+          <br><br>Format: group the findings by the five areas, at most two bullets per area, in plain language, with one short line on why each item matters to a hearing officer. Include a source link for every item.
+          <br><br>Constraints: rely only on announced releases, published reports, court filings, official guidance, and reputable reporting — no rumors, speculation, or vendor marketing. If an area had nothing significant this week, say 'nothing significant' rather than filling space.</div>
       </div>
     </div>
   </section>
@@ -465,7 +473,21 @@
 
 <script>
 (function () {
-  var ROUTINE = "Every Monday at 8:00 a.m., search for major AI product and model updates from OpenAI, Anthropic, Google, and Microsoft over the past week, plus any significant news about AI use in the legal profession. Summarize in five bullets or fewer, in plain language, with a link for each item. Skip rumors and speculation; include only announced products and published reports.";
+  var ROUTINE = [
+    "You are a research assistant briefing a special education administrative law judge or impartial hearing officer.",
+    "",
+    "Every Monday at 8:00 a.m., search the past week for AI developments relevant to that role, and cover all five areas:",
+    "",
+    "1. Models and tools — significant releases or changes from OpenAI, Anthropic, Google, and Microsoft, and what actually changed for an everyday user.",
+    "2. AI in the courts — new court rules, standing orders, and judicial or bar ethics opinions on AI use; sanctions or discipline involving AI-generated filings or fabricated citations.",
+    "3. Law and policy — federal and state AI legislation, regulation, and agency guidance, including student data privacy under FERPA and IDEA.",
+    "4. AI in special education — how districts are using AI in evaluations, IEP development, and assistive technology; any evidence of bias or disparate impact on students with disabilities; and disputes or decisions raising these issues.",
+    "5. AI and evidence — authenticity, deepfakes, and how tribunals are treating AI-generated or AI-assisted evidence and expert testimony.",
+    "",
+    "Format: group the findings by the five areas, at most two bullets per area, in plain language, with one short line on why each item matters to a hearing officer. Include a source link for every item.",
+    "",
+    "Constraints: rely only on announced releases, published reports, court filings, official guidance, and reputable reporting — no rumors, speculation, or vendor marketing. If an area had nothing significant this week, say 'nothing significant' rather than filling space."
+  ].join("\n");
   var PROMPT = "You are an experienced legal assistant supporting a special education hearing officer. I will paste one de-identified document from a due process matter. Summarize the document, identify the issues it presents, and list every date or deadline it references. Format your answer with bold headings: Summary, Issues Presented, Dates & Deadlines, Open Questions. Use only the document provided; do not cite case law or outside sources; do not include PII, replace with generic terms. If something is not stated in the document, write 'not stated.' Keep it under 750 words.";
   var TEXTS = { prompt: PROMPT, routine: ROUTINE };
 
