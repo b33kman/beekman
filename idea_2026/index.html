@@ -78,6 +78,10 @@
   .bk-totop:hover { color: #fff !important; }
   a[data-nav] { transition: color .3s ease; }
 
+  /* Case Brain card thumbnails — pinned to the card bottom so all three align */
+  .bk-thumb { margin-top: auto; border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; background: var(--gray-50); }
+  .bk-thumb img { display: block; width: 100%; height: 132px; object-fit: cover; object-position: top left; }
+
   /* Brand logos — official monochrome marks (dashboardicons.com), rendered black */
   .bk-logo { display:block; width:auto; flex:none; filter: brightness(0); }
   .bk-logo-lg { height: 22px; }
@@ -250,34 +254,27 @@
         <div style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;display:flex;flex-direction:column;">
           <div style="font-family:var(--font-display);font-weight:800;font-size:30px;line-height:1;color:var(--olive);letter-spacing:-0.02em;margin-bottom:8px;">1</div>
           <div style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin-bottom:4px;">One Project (or Folder)</div>
-          <div style="font-size:13px;line-height:1.5;color:var(--fg-body);">A single Project (or folder) per matter, structured by document type — correspondence, filings, records, evaluations, research. Load it with every source document so answers stay grounded in your own files.</div>
+          <div style="font-size:13px;line-height:1.5;color:var(--fg-body);margin-bottom:14px;">A single Project (or folder) per matter, structured by document type — correspondence, filings, records, evaluations, research. Load it with every source document so answers stay grounded in your own files.</div>
+          <div class="bk-thumb"><img src="assets/casebrain/project-folder.webp" alt="A case Project in OneDrive with folders for correspondence, court filings, evaluations, records, and research" loading="lazy" width="640" height="535"></div>
         </div>
 
         <div style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;display:flex;flex-direction:column;">
           <div style="font-family:var(--font-display);font-weight:800;font-size:30px;line-height:1;color:var(--olive);letter-spacing:-0.02em;margin-bottom:8px;">2</div>
           <div style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin-bottom:4px;">One operating guide</div>
-          <div style="font-size:13px;line-height:1.5;color:var(--fg-body);">A document that controls the AI's output — the tone, structure, and the safety and accuracy rules it must follow. Write it once; it governs every session.</div>
+          <div style="font-size:13px;line-height:1.5;color:var(--fg-body);margin-bottom:14px;">A document that controls the AI's output — the tone, structure, and the safety and accuracy rules it must follow. Write it once; it governs every session.</div>
+          <div class="bk-thumb"><img src="assets/casebrain/operating-guide.webp" alt="A Copilot Operating Guide document open in Word, setting standards for AI use in legal work" loading="lazy" width="640" height="638"></div>
         </div>
 
         <div style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:18px 20px;display:flex;flex-direction:column;">
           <div style="font-family:var(--font-display);font-weight:800;font-size:30px;line-height:1;color:var(--olive);letter-spacing:-0.02em;margin-bottom:8px;">3</div>
           <div style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.01em;color:var(--gray-900);margin-bottom:4px;">One living master case summary</div>
-          <div style="font-size:13px;line-height:1.5;color:var(--fg-body);">A single document that summarizes the case — overview, parties, procedural history, issues — and stays current as the matter moves. The AI reads it for instant context.</div>
+          <div style="font-size:13px;line-height:1.5;color:var(--fg-body);margin-bottom:14px;">A single document that summarizes the case — overview, parties, procedural history, issues — and stays current as the matter moves. The AI reads it for instant context.</div>
+          <div class="bk-thumb"><img src="assets/casebrain/case-summary.webp" alt="A master case summary document open in Word, showing case overview, parties, and procedural history" loading="lazy" width="640" height="638"></div>
         </div>
 
       </div>
 
       <p style="font-size:13px;line-height:1.5;color:var(--fg-muted);margin:16px 0 28px;"><b style="font-family:var(--font-display);font-weight:700;color:var(--gray-700);">Where:</b> A Copilot Project, or a dedicated matter folder.</p>
-
-      <div style="font-family:var(--font-display);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--gray-700);margin:0 0 12px;display:flex;align-items:center;gap:10px;"><span style="width:22px;height:2px;background:var(--olive);"></span>Switch the brain on</div>
-      <div style="background:var(--olive-wash);border:1px solid var(--olive);border-radius:16px;padding:20px;max-width:900px;margin-bottom:28px;">
-        <p style="font-family:var(--font-display);font-size:13px;font-weight:500;color:var(--gray-700);margin:0 0 12px;line-height:1.5;">An operating guide only works if you point the AI at it. Open with this line at the start of any session.</p>
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;">
-          <span style="font-family:var(--font-display);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--olive-dark);">The activation instruction</span>
-          <button data-copy="activation" data-label="Copy" class="bk-copy-btn" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:#fff;background:var(--olive);border:none;border-radius:10px;padding:9px 16px;cursor:pointer;min-height:40px;">Copy</button>
-        </div>
-        <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;line-height:1.6;color:var(--gray-900);">"For this session, follow the rules in my Operating Guide located in this folder."</div>
-      </div>
 
       <div style="font-family:var(--font-display);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--gray-700);margin:0 0 12px;display:flex;align-items:center;gap:10px;"><span style="width:22px;height:2px;background:var(--olive);"></span>Example documents — copy the structure</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;max-width:900px;">
@@ -391,8 +388,7 @@
 (function () {
   var ROUTINE = "Every Monday at 8:00 a.m., search for major AI product and model updates from OpenAI, Anthropic, Google, and Microsoft over the past week, plus any significant news about AI use in the legal profession. Summarize in five bullets or fewer, in plain language, with a link for each item. Skip rumors and speculation; include only announced products and published reports.";
   var PROMPT = "You are an experienced legal assistant supporting a special education hearing officer. I will paste one de-identified document from a due process matter. Summarize the document, identify the issues it presents, and list every date or deadline it references. Format your answer with bold headings: Summary, Issues Presented, Dates & Deadlines, Open Questions. Use only the document provided; do not cite case law or outside sources; do not include PII, replace with generic terms. If something is not stated in the document, write 'not stated.' Keep it under 750 words.";
-  var ACTIVATION = "For this session, follow the rules in my Operating Guide located in this folder.";
-  var TEXTS = { prompt: PROMPT, routine: ROUTINE, activation: ACTIVATION };
+  var TEXTS = { prompt: PROMPT, routine: ROUTINE };
 
   /* Active-section nav highlight (olive underline + white text) */
   var ids = ['tools', 'skills', 'prompts', 'casebrain', 'current', 'materials'];
