@@ -75,7 +75,20 @@
 
   /* Compact reference lists (Stay Current) — hairline-divided rows, whole row is
      the link. Denser than cards, which suits scanning a reference list. */
-  .bk-reflist { background: #fff; border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow-sm); overflow: hidden; max-width: 900px; }
+  .bk-reflist { background: #fff; border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow-sm); overflow: hidden; }
+  /* Two reference columns side by side on wide screens; stack when narrow. */
+  /* min() lets the track shrink below its floor on narrow screens, otherwise a
+     430px minimum would overflow a container narrower than that. */
+  .bk-refgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(430px, 100%), 1fr)); gap: 16px 20px; align-items: start; }
+  .bk-refcol { min-width: 0; }
+  /* Rows offering more than one destination can't be a single whole-row link,
+     so the row is a plain container and each platform gets its own link. */
+  .bk-row-static { display: block; padding: 11px 16px; border-top: 1px solid var(--border); }
+  .bk-row-static:first-child { border-top: 0; }
+  .bk-row-links { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin-top: 6px; }
+  .bk-plat { font-family: var(--font-display); font-weight: 600; font-size: 12.5px; color: var(--olive-dark); text-decoration: none; white-space: nowrap; padding: 7px 3px; margin: -7px -3px; transition: color .2s ease; }
+  .bk-plat:hover { color: var(--olive); text-decoration: underline; }
+  .bk-plat-none { font-family: var(--font-display); font-weight: 500; font-size: 12.5px; color: var(--fg-muted); white-space: nowrap; }
   .bk-row { display: flex; align-items: center; gap: 12px; padding: 11px 16px; text-decoration: none; border-top: 1px solid var(--border); transition: background .2s ease; }
   .bk-row:first-child { border-top: 0; }
   .bk-row:hover { background: var(--gray-50); }
@@ -326,30 +339,32 @@
       <p style="font-size:14.5px;line-height:1.6;color:var(--fg-muted);font-style:italic;margin:0 0 24px;max-width:720px;">The models update roughly monthly. Follow the sources directly — or, for a hands-off brief, set up the routine below.</p>
 
       <div style="font-family:var(--font-display);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--gray-700);margin:0 0 12px;display:flex;align-items:center;gap:10px;"><span style="width:22px;height:2px;background:var(--olive);"></span>Straight from the model makers</div>
-      <div class="bk-reflist" style="margin-bottom:26px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:26px;">
 
-        <a href="https://openai.com/news" target="_blank" rel="noopener" class="bk-row">
+        <div class="bk-reflist"><a href="https://openai.com/news" target="_blank" rel="noopener" class="bk-row">
           <img class="bk-logo bk-logo-sm" src="assets/logos/openai.svg" alt="">
           <div class="bk-row-head" style="flex:1;"><span class="bk-row-name">OpenAI News</span><span class="bk-row-url">openai.com/news</span></div>
           <span class="bk-row-go">↗</span>
-        </a>
+        </a></div>
 
-        <a href="https://anthropic.com/news" target="_blank" rel="noopener" class="bk-row">
+        <div class="bk-reflist"><a href="https://anthropic.com/news" target="_blank" rel="noopener" class="bk-row">
           <img class="bk-logo bk-logo-sm" src="assets/logos/anthropic.svg" alt="">
           <div class="bk-row-head" style="flex:1;"><span class="bk-row-name">Anthropic News</span><span class="bk-row-url">anthropic.com/news</span></div>
           <span class="bk-row-go">↗</span>
-        </a>
+        </a></div>
 
-        <a href="https://blog.google" target="_blank" rel="noopener" class="bk-row">
+        <div class="bk-reflist"><a href="https://blog.google" target="_blank" rel="noopener" class="bk-row">
           <img class="bk-logo bk-logo-sm" src="assets/logos/google.svg" alt="">
           <div class="bk-row-head" style="flex:1;"><span class="bk-row-name">Google AI Updates</span><span class="bk-row-url">blog.google</span></div>
           <span class="bk-row-go">↗</span>
-        </a>
+        </a></div>
 
       </div>
 
+      <div class="bk-refgrid" style="margin-bottom:28px;">
+      <div class="bk-refcol">
       <div style="font-family:var(--font-display);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--gray-700);margin:0 0 12px;display:flex;align-items:center;gap:10px;"><span style="width:22px;height:2px;background:var(--olive);"></span>Newsletters &amp; publications</div>
-      <div class="bk-reflist" style="margin-bottom:28px;">
+      <div class="bk-reflist">
 
         <a href="https://www.therundown.ai/" target="_blank" rel="noopener" class="bk-row">
           <div style="flex:1;min-width:0;">
@@ -391,6 +406,51 @@
           <span class="bk-row-go">↗</span>
         </a>
 
+      </div>
+      </div>
+
+      <div class="bk-refcol">
+      <div style="font-family:var(--font-display);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--gray-700);margin:0 0 12px;display:flex;align-items:center;gap:10px;"><span style="width:22px;height:2px;background:var(--olive);"></span>Podcasts &amp; YouTube</div>
+      <div class="bk-reflist">
+
+        <div class="bk-row-static">
+          <div class="bk-row-head"><span class="bk-row-name">The AI Daily Brief</span></div>
+          <div class="bk-row-desc">Nathaniel Whittemore's roughly 20-minute daily rundown of the most consequential AI news and what it actually means.</div>
+          <div class="bk-row-links">
+            <a href="https://www.youtube.com/@AIDailyBrief" target="_blank" rel="noopener" class="bk-plat">YouTube ↗</a>
+            <a href="https://open.spotify.com/show/7gKwwMLFLc6RmjmRpbMtEO" target="_blank" rel="noopener" class="bk-plat">Spotify ↗</a>
+          </div>
+        </div>
+
+        <div class="bk-row-static">
+          <div class="bk-row-head"><span class="bk-row-name">How I AI</span></div>
+          <div class="bk-row-desc">Claire Vo has each guest demo one concrete, practical way they actually use AI — live walkthroughs rather than theory.</div>
+          <div class="bk-row-links">
+            <a href="https://www.youtube.com/@howiaipodcast" target="_blank" rel="noopener" class="bk-plat">YouTube ↗</a>
+            <a href="https://open.spotify.com/show/4aRP2XSavdtrLG5FZoonOK" target="_blank" rel="noopener" class="bk-plat">Spotify ↗</a>
+          </div>
+        </div>
+
+        <div class="bk-row-static">
+          <div class="bk-row-head"><span class="bk-row-name">Nate Herk · AI Automation</span></div>
+          <div class="bk-row-desc">Hands-on tutorials for building AI agents and automated workflows without writing code.</div>
+          <div class="bk-row-links">
+            <a href="https://www.youtube.com/@nateherk" target="_blank" rel="noopener" class="bk-plat">YouTube ↗</a>
+            <span class="bk-plat-none">No podcast feed</span>
+          </div>
+        </div>
+
+        <div class="bk-row-static">
+          <div class="bk-row-head"><span class="bk-row-name">Paul J Lipsky</span></div>
+          <div class="bk-row-desc">Plain-English walkthroughs of AI tools and automations, aimed squarely at non-technical users.</div>
+          <div class="bk-row-links">
+            <a href="https://www.youtube.com/@PaulJLipsky" target="_blank" rel="noopener" class="bk-plat">YouTube ↗</a>
+            <span class="bk-plat-none">No podcast feed</span>
+          </div>
+        </div>
+
+      </div>
+      </div>
       </div>
 
       <div style="font-family:var(--font-display);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--gray-700);margin:0 0 12px;display:flex;align-items:center;gap:10px;"><span style="width:22px;height:2px;background:var(--olive);"></span>Advanced — automate it with a routine</div>
