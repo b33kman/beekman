@@ -109,6 +109,32 @@
   .bk-totop:hover { color: #fff !important; }
   a[data-nav] { transition: color .3s ease; }
 
+  /* Mobile nav — six links don't fit a phone width, so below 680px the link row
+     collapses into a hamburger dropdown. The link elements are the same nodes,
+     so the scrollspy keeps working untouched. Overrides need !important because
+     the nav's layout is set via inline style. */
+  .bk-menu-btn { display: none; flex: none; width: 44px; height: 44px; margin-right: -10px; align-items: center; justify-content: center; flex-direction: column; gap: 5px; background: none; border: 0; padding: 0; cursor: pointer; }
+  .bk-menu-btn span { display: block; width: 22px; height: 2px; background: var(--gray-300); border-radius: 2px; transition: transform .25s ease, opacity .2s ease; }
+  .bk-menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .bk-menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .bk-menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 680px) {
+    .bk-menu-btn { display: flex; }
+    .nav-scroll {
+      display: none !important;
+      position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column !important; align-items: flex-start !important;
+      gap: 0 !important; overflow-x: visible !important; white-space: normal !important;
+      background: var(--purple-darkest);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      padding: 4px clamp(18px,4vw,32px) 12px;
+    }
+    .nav-scroll.bk-open { display: flex !important; }
+    .nav-scroll a[data-nav] { font-size: 15px !important; padding: 11px 0 3px !important; }
+  }
+
   /* Card thumbnails — margin-top:auto pins them to the card bottom so they align
      across a row. The element above each thumb carries margin-bottom:16px, which
      guarantees that minimum gap even when a card has no slack to distribute. */
@@ -131,7 +157,8 @@
   <nav style="position:sticky;top:0;z-index:50;background:rgba(46,21,55,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);">
     <div style="max-width:1200px;margin:0 auto;padding:0 clamp(18px,4vw,32px);height:58px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
       <a href="#top" data-nav="top" style="flex:none;display:flex;align-items:center;text-decoration:none;"><img src="/images/beekman_logo_white.webp" alt="Beekman" style="height:18px;display:block;"></a>
-      <div class="nav-scroll" style="display:flex;align-items:center;gap:22px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;white-space:nowrap;">
+      <button id="bk-menu-btn" class="bk-menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="bk-navlinks"><span></span><span></span><span></span></button>
+      <div id="bk-navlinks" class="nav-scroll" style="display:flex;align-items:center;gap:22px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;white-space:nowrap;">
         <a data-nav="tools" href="#tools" style="font-family:var(--font-display);font-size:13.5px;font-weight:500;color:var(--gray-400);text-decoration:none;padding-bottom:2px;border-bottom:2px solid transparent;">Tools</a>
         <a data-nav="skills" href="#skills" style="font-family:var(--font-display);font-size:13.5px;font-weight:500;color:var(--gray-400);text-decoration:none;padding-bottom:2px;border-bottom:2px solid transparent;">Skills</a>
         <a data-nav="prompts" href="#prompts" style="font-family:var(--font-display);font-size:13.5px;font-weight:500;color:var(--gray-400);text-decoration:none;padding-bottom:2px;border-bottom:2px solid transparent;">Prompts</a>
@@ -599,10 +626,36 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  /* Mobile menu */
+  var menuBtn = document.getElementById('bk-menu-btn');
+  var navLinks = document.getElementById('bk-navlinks');
+  function setMenu(open) {
+    if (!menuBtn || !navLinks) return;
+    navLinks.classList.toggle('bk-open', open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  if (menuBtn) {
+    menuBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setMenu(menuBtn.getAttribute('aria-expanded') !== 'true');
+    });
+    document.addEventListener('click', function (e) {
+      if (navLinks.classList.contains('bk-open') && !navLinks.contains(e.target) && e.target !== menuBtn) setMenu(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setMenu(false);
+    });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 680) setMenu(false);
+    }, { passive: true });
+  }
+
   /* Nav click: smooth scroll with sticky-nav offset */
   document.querySelectorAll('[data-nav]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       e.preventDefault();
+      setMenu(false);
       var id = a.getAttribute('data-nav') || '';
       setActive(id === 'top' ? '' : id);
       if (!id || id === 'top') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
