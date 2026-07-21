@@ -146,6 +146,22 @@
   .bk-logo-lg { height: 22px; }
   .bk-logo-md { height: 26px; }
   .bk-logo-sm { height: 18px; }
+
+  /* Collapsible copy blocks — long prompts clip to a preview with a toggle.
+     The clip is applied by JS, so without JS the full text still shows. */
+  .bk-clip { position: relative; max-height: 118px; overflow: hidden; }
+  .bk-clip.bk-clip-open { max-height: none; }
+  .bk-clip::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 54px; background: linear-gradient(to bottom, rgba(255,255,255,0), #fff); pointer-events: none; }
+  .bk-clip.bk-clip-open::after { display: none; }
+  .bk-clip-row { display: flex; justify-content: flex-end; margin-top: 8px; }
+  .bk-clip-toggle { font-family: var(--font-display); font-weight: 600; font-size: 12.5px; color: var(--olive-dark); background: none; border: 0; cursor: pointer; padding: 8px 4px; margin: -8px -4px; transition: color .2s ease; }
+  .bk-clip-toggle:hover { color: var(--olive); text-decoration: underline; }
+
+  /* Back to top — fades in once the reader is well down the page */
+  .bk-top { position: fixed; right: 20px; bottom: 20px; z-index: 55; width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer; background: var(--olive-dark); color: #fff; font-size: 17px; line-height: 1; box-shadow: 0 6px 20px rgba(0,0,0,0.22); opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .25s ease, transform .25s ease, visibility .25s; }
+  .bk-top.bk-top-show { opacity: 1; visibility: visible; transform: none; }
+  .bk-top:hover { filter: brightness(1.12); }
+  @media print { .bk-top { display: none; } }
 </style>
 </head>
 <body>
@@ -290,7 +306,7 @@
             <span style="font-family:var(--font-display);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--olive-dark);">About / Work profile</span>
             <button data-copy="profile" data-label="Copy" class="bk-copy-btn" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:#fff;background:var(--olive-dark);border:none;border-radius:10px;padding:9px 16px;cursor:pointer;min-height:40px;">Copy</button>
           </div>
-          <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:1.6;color:var(--gray-900);">About me
+          <div data-clip style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:1.6;color:var(--gray-900);">About me
             <br>- I am an attorney and an administrative law judge / impartial hearing officer (IHO).
             <br>- I work in special education due process in the state of _______
             <br>- My work involves reviewing due process complaints, IEPs, evaluations, and evidentiary records, and drafting decisions, prehearing orders, and interim rulings.
@@ -303,7 +319,7 @@
             <span style="font-family:var(--font-display);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--olive-dark);">Personalization / Behavior</span>
             <button data-copy="behavior" data-label="Copy" class="bk-copy-btn" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:#fff;background:var(--olive-dark);border:none;border-radius:10px;padding:9px 16px;cursor:pointer;min-height:40px;">Copy</button>
           </div>
-          <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:1.6;color:var(--gray-900);">How to format responses
+          <div data-clip style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:1.6;color:var(--gray-900);">How to format responses
             <br>- Be direct. Skip preamble and filler.
             <br>- Use bullet points and short paragraphs.
             <br>- Use plain, functional language. Avoid consulting-speak and marketing tone.
@@ -342,7 +358,7 @@
           <span style="font-family:var(--font-display);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--olive-dark);">Copy &amp; run on one de-identified document</span>
           <button data-copy="prompt" data-label="Copy" class="bk-copy-btn" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:#fff;background:var(--olive-dark);border:none;border-radius:10px;padding:9px 16px;cursor:pointer;min-height:40px;">Copy</button>
         </div>
-        <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;line-height:1.6;color:var(--gray-900);">"You are an experienced legal assistant supporting a special education hearing officer. I will paste one de-identified document from a due process matter. Summarize the document, identify the issues it presents, and list every date or deadline it references. Format your answer with bold headings: Summary, Issues Presented, Dates &amp; Deadlines, Open Questions. Use only the document provided; do not cite case law or outside sources; do not include PII, replace with generic terms. If something is not stated in the document, write 'not stated.' Keep it under 750 words."</div>
+        <div data-clip style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;line-height:1.6;color:var(--gray-900);">"You are an experienced legal assistant supporting a special education hearing officer. I will paste one de-identified document from a due process matter. Summarize the document, identify the issues it presents, and list every date or deadline it references. Format your answer with bold headings: Summary, Issues Presented, Dates &amp; Deadlines, Open Questions. Use only the document provided; do not cite case law or outside sources; do not include PII, replace with generic terms. If something is not stated in the document, write 'not stated.' Keep it under 750 words."</div>
       </div>
     </div>
   </section>
@@ -532,7 +548,7 @@
           <span style="font-family:var(--font-display);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--olive-dark);">The Weekly Routine</span>
           <button data-copy="routine" data-label="Copy" class="bk-copy-btn" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:#fff;background:var(--olive-dark);border:none;border-radius:10px;padding:9px 16px;cursor:pointer;min-height:40px;">Copy</button>
         </div>
-        <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;line-height:1.6;color:var(--gray-900);">You are a research assistant briefing a special education administrative law judge or impartial hearing officer.
+        <div data-clip style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;line-height:1.6;color:var(--gray-900);">You are a research assistant briefing a special education administrative law judge or impartial hearing officer.
           <br><br>Every Monday at 8:00 a.m., search the past week for AI developments relevant to that role, and cover all five areas:
           <br><br>1. Models and tools — significant releases or changes from OpenAI, Anthropic, Google, and Microsoft, and what actually changed for an everyday user.
           <br>2. AI in the courts — new court rules, standing orders, and judicial or bar ethics opinions on AI use; sanctions or discipline involving AI-generated filings or fabricated citations.
@@ -602,6 +618,8 @@
   </footer>
 
 </div>
+
+<button id="bk-top" class="bk-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
 
 <script>
 (function () {
@@ -678,6 +696,39 @@
     setActive(active);
   }
 
+  /* Collapse long copy blocks to a preview with a Show all toggle. Done in JS
+     so that without JS the full text is still readable. */
+  document.querySelectorAll('[data-clip]').forEach(function (box, i) {
+    /* Visible height when clipped is ~152px; only clip when enough is actually
+       hidden to be worth a toggle, otherwise leave the block fully open. */
+    if (box.scrollHeight <= 210) return;
+    box.classList.add('bk-clip');
+    if (!box.id) box.id = 'bk-clip-' + i;
+    var row = document.createElement('div');
+    row.className = 'bk-clip-row';
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'bk-clip-toggle';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', box.id);
+    btn.textContent = 'Show all ▾';
+    btn.addEventListener('click', function () {
+      var open = box.classList.toggle('bk-clip-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? 'Show less ▴' : 'Show all ▾';
+    });
+    row.appendChild(btn);
+    box.parentNode.insertBefore(row, box.nextSibling);
+  });
+
+  /* Back to top */
+  var topBtn = document.getElementById('bk-top');
+  if (topBtn) {
+    topBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   /* Scroll progress bar + scrollspy */
   var bar = document.getElementById('bk-progress');
   var ticking = false;
@@ -690,6 +741,7 @@
       var max = h.scrollHeight - h.clientHeight;
       var p = max > 0 ? (h.scrollTop / max) * 100 : 0;
       if (bar) bar.style.width = p + '%';
+      if (topBtn) topBtn.classList.toggle('bk-top-show', h.scrollTop > 700);
       updateActive();
     });
   }
