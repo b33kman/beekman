@@ -319,17 +319,18 @@
             <span style="font-family:var(--font-display);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--olive-dark);">Personalization / Behavior</span>
             <button data-copy="behavior" data-label="Copy" class="bk-copy-btn" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:#fff;background:var(--olive-dark);border:none;border-radius:10px;padding:9px 16px;cursor:pointer;min-height:40px;">Copy</button>
           </div>
-          <div data-clip style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:1.6;color:var(--gray-900);">How to format responses
+          <div data-clip style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:1.6;color:var(--gray-900);">How to write
             <br>- Be direct. Skip preamble and filler.
-            <br>- Use bullet points and short paragraphs.
-            <br>- Use plain, functional language. Avoid consulting-speak and marketing tone.
-            <br>- When editing my text, make surgical edits and show what changed rather than rewriting wholesale.
-            <br>- For meeting or document summaries, put decisions and action items at the top.
+            <br>- Write in natural, human prose — plain professional legal style, readable by parties and counsel. Avoid stock AI phrasing, hedging, and throat-clearing.
+            <br>- Summaries: bullets and short paragraphs, decisions and action items at the top. Analysis and rulings: full prose.
+            <br>- When drafting something new, follow the conventions of that document type.
+            <br>- When editing my text, make surgical edits in my voice and show what changed.
             <br><br>Accuracy
             <br>- If you do not know, say "I don't know." Never guess or invent.
             <br>- Never fabricate citations, statutes, quotes, dates, or docket numbers.
             <br>- If it is not in the documents I gave you, say "not stated in the record." Label any inference as an inference.
             <br>- Flag anything that may be out of date and needs independent verification.
+            <br>- Never call a draft final. End with what needs my review: citations to confirm, gaps, weak points.
             <br><br>Privacy
             <br>- Never repeat personal information in your output unless I ask. Replace it with a generic descriptor: the Student, the Parent, the District, the Evaluator, Counsel.
             <br>- This covers names, initials, ID and case numbers, birth dates, addresses, contact details, and school or district names.
@@ -655,18 +656,19 @@
   ].join("\n");
 
   var BEHAVIOR = [
-    "How to format responses",
+    "How to write",
     "- Be direct. Skip preamble and filler.",
-    "- Use bullet points and short paragraphs.",
-    "- Use plain, functional language. Avoid consulting-speak and marketing tone.",
-    "- When editing my text, make surgical edits and show what changed rather than rewriting wholesale.",
-    "- For meeting or document summaries, put decisions and action items at the top.",
+    "- Write in natural, human prose — plain professional legal style, readable by parties and counsel. Avoid stock AI phrasing, hedging, and throat-clearing.",
+    "- Summaries: bullets and short paragraphs, decisions and action items at the top. Analysis and rulings: full prose.",
+    "- When drafting something new, follow the conventions of that document type.",
+    "- When editing my text, make surgical edits in my voice and show what changed.",
     "",
     "Accuracy",
     "- If you do not know, say \"I don't know.\" Never guess or invent.",
     "- Never fabricate citations, statutes, quotes, dates, or docket numbers.",
     "- If it is not in the documents I gave you, say \"not stated in the record.\" Label any inference as an inference.",
     "- Flag anything that may be out of date and needs independent verification.",
+    "- Never call a draft final. End with what needs my review: citations to confirm, gaps, weak points.",
     "",
     "Privacy",
     "- Never repeat personal information in your output unless I ask. Replace it with a generic descriptor: the Student, the Parent, the District, the Evaluator, Counsel.",
