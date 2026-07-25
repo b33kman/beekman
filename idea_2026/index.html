@@ -744,10 +744,30 @@
       var open = box.classList.toggle('bk-clip-open');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       btn.textContent = open ? 'Show less ▴' : 'Show all ▾';
+      sizeRunway();
     });
     row.appendChild(btn);
     box.parentNode.insertBefore(row, box.nextSibling);
   });
+
+  /* The last section can only sit under the sticky nav if enough page remains
+     below it; otherwise the browser clamps the scroll and the heading lands
+     mid-viewport. Extend the footer by exactly the missing runway — zero on
+     shorter viewports, where the closing band and footer already suffice. */
+  var footerEl = document.querySelector('footer');
+  var FOOTER_PAD = 34;
+  function sizeRunway() {
+    if (!footerEl) return;
+    footerEl.style.paddingBottom = FOOTER_PAD + 'px';
+    /* last *identified* section — the closing band after it has no id */
+    var secs = document.querySelectorAll('section[id]');
+    var last = secs.length ? secs[secs.length - 1] : null;
+    if (!last) return;
+    var h = document.documentElement;
+    var topOfLast = last.getBoundingClientRect().top + h.scrollTop;
+    var need = (h.clientHeight - 64) - (h.scrollHeight - topOfLast);
+    if (need > 0) footerEl.style.paddingBottom = (FOOTER_PAD + Math.ceil(need)) + 'px';
+  }
 
   /* Back to top */
   var topBtn = document.getElementById('bk-top');
@@ -775,6 +795,9 @@
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+  sizeRunway();
+  window.addEventListener('resize', sizeRunway, { passive: true });
+  window.addEventListener('load', sizeRunway);
 
   /* Mobile menu */
   var menuBtn = document.getElementById('bk-menu-btn');
