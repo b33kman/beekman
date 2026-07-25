@@ -366,9 +366,9 @@
           <button data-copy="prompt" data-label="Copy" class="bk-copy-btn" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:#fff;background:var(--olive-dark);border:none;border-radius:10px;padding:9px 16px;cursor:pointer;min-height:40px;">Copy</button>
         </div>
         <div data-clip style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;line-height:1.6;color:var(--gray-900);">Role: You are a [STATE] attorney with [NUMBER] years of experience in special education law.
-            <br><br>Context: I am an impartial hearing officer preparing for [WHAT — e.g. a prehearing conference, a ruling on a motion, a final decision]. Use the attached documents as your only source materials.
-            <br><br>Task: [WHAT YOU WANT — e.g. summarize the record, identify the issues presented, list every date and deadline, compare the parties' positions].
-            <br><br>Format: Present the answer as [HOW — e.g. a bulleted list with bold headings: Summary, Issues Presented, Dates &amp; Deadlines, Open Questions].
+            <br><br>Context: I am an impartial hearing officer preparing for [e.g. a prehearing conference, a ruling on a motion, a final decision]. Use the attached documents as your only source materials.
+            <br><br>Task: [e.g. summarize the record, identify the issues presented, list every date and deadline, compare the parties' positions].
+            <br><br>Format: Present the answer as [e.g. a bulleted list with bold headings: Summary, Issues Presented, Dates &amp; Deadlines, Open Questions; or mimic the attached example or template].
             <br><br>Constraints: Use only the documents provided. Do not cite case law or outside sources. Replace any names with generic descriptors. If something is not stated, write "not stated." Keep it under [NUMBER] words.</div>
       </div>
     </div>
@@ -652,11 +652,11 @@
   var PROMPT = [
     "Role: You are a [STATE] attorney with [NUMBER] years of experience in special education law.",
     "",
-    "Context: I am an impartial hearing officer preparing for [WHAT — e.g. a prehearing conference, a ruling on a motion, a final decision]. Use the attached documents as your only source materials.",
+    "Context: I am an impartial hearing officer preparing for [e.g. a prehearing conference, a ruling on a motion, a final decision]. Use the attached documents as your only source materials.",
     "",
-    "Task: [WHAT YOU WANT — e.g. summarize the record, identify the issues presented, list every date and deadline, compare the parties' positions].",
+    "Task: [e.g. summarize the record, identify the issues presented, list every date and deadline, compare the parties' positions].",
     "",
-    "Format: Present the answer as [HOW — e.g. a bulleted list with bold headings: Summary, Issues Presented, Dates & Deadlines, Open Questions].",
+    "Format: Present the answer as [e.g. a bulleted list with bold headings: Summary, Issues Presented, Dates & Deadlines, Open Questions; or mimic the attached example or template].",
     "",
     "Constraints: Use only the documents provided. Do not cite case law or outside sources. Replace any names with generic descriptors. If something is not stated, write \"not stated.\" Keep it under [NUMBER] words."
   ].join("\n");
