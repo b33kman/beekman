@@ -348,7 +348,7 @@
   <section id="prompts" style="background:var(--gray-50);padding:46px 0;">
     <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,32px);">
       <h2 style="font-family:var(--font-display);font-weight:700;font-size:26px;letter-spacing:-0.02em;color:var(--gray-900);margin:0 0 8px;">Prompt Guidance</h2>
-      <p style="font-size:14.5px;line-height:1.6;color:var(--fg-muted);font-style:italic;margin:0 0 24px;max-width:720px;">Build every prompt on the R-C-T-F-C framework. The more parts you provide, the closer the first response lands — the starter prompt below is this framework, filled in.</p>
+      <p style="font-size:14.5px;line-height:1.6;color:var(--fg-muted);font-style:italic;margin:0 0 24px;max-width:720px;">Build every prompt on the R-C-T-F-C framework. The more parts you provide, the closer the first response lands. The starter prompt below is this framework as a template — copy it and fill in the brackets.</p>
 
       <div style="font-family:var(--font-display);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--gray-700);margin:0 0 12px;display:flex;align-items:center;gap:10px;"><span style="width:22px;height:2px;background:var(--olive);"></span>The R-C-T-F-C framework</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:28px;">
@@ -359,13 +359,17 @@
         <div style="background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);padding:16px 18px;"><div style="font-family:var(--font-display);font-weight:800;font-size:30px;line-height:1;color:var(--olive);letter-spacing:-0.02em;margin-bottom:8px;">C</div><div style="font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--gray-900);margin-bottom:3px;">Constraints</div><div style="font-size:12.5px;line-height:1.45;color:var(--fg-muted);">The boundaries: length, tone, sources.</div></div>
       </div>
 
-      <div style="font-family:var(--font-display);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--gray-700);margin:0 0 12px;display:flex;align-items:center;gap:10px;"><span style="width:22px;height:2px;background:var(--olive);"></span>The starter prompt — R-C-T-F-C, filled in</div>
+      <div style="font-family:var(--font-display);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--gray-700);margin:0 0 12px;display:flex;align-items:center;gap:10px;"><span style="width:22px;height:2px;background:var(--olive);"></span>The starter prompt — fill in the blanks</div>
       <div style="background:var(--olive-wash);border:1px solid var(--olive);border-radius:16px;padding:20px;max-width:900px;">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;">
-          <span style="font-family:var(--font-display);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--olive-dark);">Copy &amp; run on one de-identified document</span>
+          <span style="font-family:var(--font-display);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--olive-dark);">Copy it, fill in the brackets, run it on de-identified documents</span>
           <button data-copy="prompt" data-label="Copy" class="bk-copy-btn" style="flex:none;font-family:var(--font-display);font-weight:600;font-size:13px;color:#fff;background:var(--olive-dark);border:none;border-radius:10px;padding:9px 16px;cursor:pointer;min-height:40px;">Copy</button>
         </div>
-        <div data-clip style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;line-height:1.6;color:var(--gray-900);">"You are an experienced legal assistant supporting a special education hearing officer. I will paste one de-identified document from a due process matter. Summarize the document, identify the issues it presents, and list every date or deadline it references. Format your answer with bold headings: Summary, Issues Presented, Dates &amp; Deadlines, Open Questions. Use only the document provided; do not cite case law or outside sources; do not include PII, replace with generic terms. If something is not stated in the document, write 'not stated.' Keep it under 750 words."</div>
+        <div data-clip style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;line-height:1.6;color:var(--gray-900);">Role: You are a [STATE] attorney with [NUMBER] years of experience in special education law.
+            <br><br>Context: I am an impartial hearing officer preparing for [WHAT — e.g. a prehearing conference, a ruling on a motion, a final decision]. Use the attached documents as your only source materials.
+            <br><br>Task: [WHAT YOU WANT — e.g. summarize the record, identify the issues presented, list every date and deadline, compare the parties' positions].
+            <br><br>Format: Present the answer as [HOW — e.g. a bulleted list with bold headings: Summary, Issues Presented, Dates &amp; Deadlines, Open Questions].
+            <br><br>Constraints: Use only the documents provided. Do not cite case law or outside sources. Replace any names with generic descriptors. If something is not stated, write "not stated." Keep it under [NUMBER] words.</div>
       </div>
     </div>
   </section>
@@ -645,7 +649,17 @@
     "",
     "Constraints: rely only on announced releases, published reports, court filings, official guidance, and reputable reporting — no rumors, speculation, or vendor marketing. If an area had nothing significant this week, say 'nothing significant' rather than filling space."
   ].join("\n");
-  var PROMPT = "You are an experienced legal assistant supporting a special education hearing officer. I will paste one de-identified document from a due process matter. Summarize the document, identify the issues it presents, and list every date or deadline it references. Format your answer with bold headings: Summary, Issues Presented, Dates & Deadlines, Open Questions. Use only the document provided; do not cite case law or outside sources; do not include PII, replace with generic terms. If something is not stated in the document, write 'not stated.' Keep it under 750 words.";
+  var PROMPT = [
+    "Role: You are a [STATE] attorney with [NUMBER] years of experience in special education law.",
+    "",
+    "Context: I am an impartial hearing officer preparing for [WHAT — e.g. a prehearing conference, a ruling on a motion, a final decision]. Use the attached documents as your only source materials.",
+    "",
+    "Task: [WHAT YOU WANT — e.g. summarize the record, identify the issues presented, list every date and deadline, compare the parties' positions].",
+    "",
+    "Format: Present the answer as [HOW — e.g. a bulleted list with bold headings: Summary, Issues Presented, Dates & Deadlines, Open Questions].",
+    "",
+    "Constraints: Use only the documents provided. Do not cite case law or outside sources. Replace any names with generic descriptors. If something is not stated, write \"not stated.\" Keep it under [NUMBER] words."
+  ].join("\n");
   var PROFILE = [
     "About me",
     "- I am an attorney and an administrative law judge / impartial hearing officer (IHO).",
