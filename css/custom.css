@@ -141,6 +141,10 @@ body::before {
   transform: translate(4px, -4px) scale(1.02);
 }
 
+.project-card:hover .img-secondary.pos-iphone-left {
+  transform: translate(-4px, -4px) scale(1.02);
+}
+
 /* Secondary image positioning — bottom-right by default */
 .img-secondary.pos-br {
   bottom: 8px;
@@ -152,6 +156,13 @@ body::before {
 .img-secondary.pos-iphone {
   bottom: 6px;
   right: 10px;
+  width: 25%;
+}
+
+/* Secondary image positioning — iPhone frame bottom-left (mirror of pos-iphone) */
+.img-secondary.pos-iphone-left {
+  bottom: 6px;
+  left: 10px;
   width: 25%;
 }
 
@@ -224,5 +235,10 @@ body::before {
     width: 26%;
     bottom: -10px;
     right: 8px;
+  }
+  .img-secondary.pos-iphone-left {
+    width: 26%;
+    bottom: -10px;
+    left: 8px;
   }
 }
