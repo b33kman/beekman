@@ -184,6 +184,16 @@ body::before {
   height: auto;
 }
 
+/* Paired phone insets (BopMe): the two screenshots have slightly different
+   aspect ratios, which left the right phone ~10px taller. Pin both to the
+   same ratio and trim the overflow at the bottom, so the pair sits level
+   without editing either source image. */
+.iphone-frame.phone-match img {
+  aspect-ratio: 1096 / 1962;
+  object-fit: cover;
+  object-position: top center;
+}
+
 .iphone-frame::before {
   content: '';
   position: absolute;
